@@ -1,9 +1,11 @@
 import {ScrollView, Text, StyleSheet} from "react-native";
-import {useNavigation} from "@react-navigation/native";
+import {DefaultTheme, useNavigation, useTheme} from "@react-navigation/native";
 import {Button} from "@react-navigation/elements";
 
 export default function SettingsScreen() {
     const navigation = useNavigation();
+    const { colors } = useTheme();
+
     return (
         <ScrollView
             contentInsetAdjustmentBehavior={'automatic'}
@@ -12,7 +14,9 @@ export default function SettingsScreen() {
                 gap: 12,
             }}
         >
-            <Text style={styles.headerText}>
+            <Text style={[styles.headerText, {
+                color: colors.text
+            }]}>
                 Settings Screen
             </Text>
             {navigation.canGoBack() &&

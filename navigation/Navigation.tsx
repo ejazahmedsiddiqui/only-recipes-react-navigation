@@ -3,6 +3,8 @@ import HomeScreen from "./screens/Home";
 import {createStaticNavigation} from "@react-navigation/native";
 import {createBottomTabNavigator, createBottomTabScreen} from "@react-navigation/bottom-tabs";
 import SettingsScreen from "./screens/Settings";
+import {Platform} from "react-native";
+import {isLiquidGlassSupported} from "@callstack/liquid-glass";
 
 type RootStackType = typeof RootStack;
 
@@ -17,14 +19,22 @@ const Tabs = createBottomTabNavigator({
         Home: createBottomTabScreen({
             screen: HomeScreen,
             options: {
-                tabBarIcon: {
-                    type: 'materialSymbol',
-                    name: 'home'
-                }
+                tabBarIcon: Platform.select({
+                    ios: { type: "sfSymbol", name: "house.fill" },
+                    android: { type: "materialSymbol", name: "home" },
+                    default: { type: "image", source: require("../icons/home.png") },
+                }),
             }
         }),
         Settings: createBottomTabScreen({
-            screen: SettingsScreen
+            screen: SettingsScreen,
+            options: {
+                tabBarIcon: Platform.select({
+                    ios: { type: "sfSymbol", name: "gear" },
+                    android: { type: "materialSymbol", name: "settings" },
+                    default: { type: "image", source: require("../icons/home.png") },
+                }),
+            }
         }),
     },
 });
@@ -35,7 +45,7 @@ const RootStack = createNativeStackNavigator({
             options: {
                 title: 'Home',
                 headerStyle: {
-                    backgroundColor: 'orange',
+                    backgroundColor: isLiquidGlassSupported ? 'transparent' : undefined,
                 },
                 headerTitleAlign: 'center',
             }
