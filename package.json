@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@callstack/liquid-glass": "^0.7.0",
+    "@react-navigation/bottom-tabs": "^8.0.0-alpha.19",
     "@react-navigation/elements": "^3.0.0-alpha.17",
     "@react-navigation/native": "^8.0.0-alpha.16",
     "@react-navigation/native-stack": "^8.0.0-alpha.19",
